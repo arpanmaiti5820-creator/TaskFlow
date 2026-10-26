@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#090a14" />
+  <title>TaskFlow – Plan less. Do more.</title>
+  <meta name="description" content="TaskFlow is a beautifully simple task manager with a smart dashboard, kanban board and Google sign-in." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="bg-fx"><div class="grid-bg"></div><div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div></div>
+
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="logo"><span class="logo-mark"><i data-icon="check"></i></span>TaskFlow</a>
+      <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+      <nav class="nav-menu">
+        <ul class="nav-links">
+          <li style="--i:0"><a href="#home" class="active">Home</a></li>
+          <li style="--i:1"><a href="#features">Features</a></li>
+          <li style="--i:2"><a href="#how">How it works</a></li>
+          <li style="--i:3"><a href="#start">Get started</a></li>
+        </ul>
+        <div class="nav-actions">
+          <a href="/login.html" class="btn btn-ghost btn-sm" data-guest>Log in</a>
+          <a href="/register.html" class="btn btn-primary btn-sm" data-guest>Sign up free</a>
+          <a href="/dashboard.html" class="btn btn-primary btn-sm" data-authed>Open dashboard <i data-icon="arrow" class="arrow-ic"></i></a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <span class="badge reveal"><span class="dot"></span> Your day, beautifully organised</span>
+          <h1 class="reveal" style="--d:1">Plan less.<br /><span class="grad-text">Do <span class="rotator" id="rotator">more</span></span>.</h1>
+          <p class="lead reveal" style="--d:2">TaskFlow turns your to-do chaos into a calm, focused workflow — with a live dashboard, a drag-and-drop board and one-click Google sign-in.</p>
+          <div class="hero-cta reveal" style="--d:3">
+            <a href="/register.html" class="btn btn-primary btn-lg" data-guest>Start for free <i data-icon="arrow" class="arrow-ic"></i></a>
+            <a href="/dashboard.html" class="btn btn-primary btn-lg" data-authed>Go to dashboard <i data-icon="arrow" class="arrow-ic"></i></a>
+            <a href="#features" class="btn btn-ghost btn-lg">See features</a>
+          </div>
+          <div class="hero-trust reveal" style="--d:4">
+            <div class="avatars"><span style="background:#7c5cff">A</span><span style="background:#00b8d9">R</span><span style="background:#ff5c9d">S</span><span style="background:#2ee6a6;color:#04201a">K</span></div>
+            <span>Loved by focused people everywhere</span>
+          </div>
+        </div>
+
+        <div class="mock-wrap reveal" style="--d:2">
+          <div class="mock" id="mock">
+            <div class="mock-head"><div class="mock-dots"><i></i><i></i><i></i></div><small style="color:var(--muted)">Today</small></div>
+            <div class="mock-stats">
+              <div class="mock-stat"><b>12</b><small>Total</small></div>
+              <div class="mock-stat"><b style="color:var(--amber)">4</b><small>In progress</small></div>
+              <div class="mock-stat"><b style="color:var(--green)">8</b><small>Done</small></div>
+            </div>
+            <div class="mock-bars">
+              <span style="height:35%;animation-delay:.1s,0s"></span><span style="height:60%;animation-delay:.2s,.4s"></span><span style="height:45%;animation-delay:.3s,.8s"></span>
+              <span style="height:85%;animation-delay:.4s,1.2s"></span><span style="height:55%;animation-delay:.5s,1.6s"></span><span style="height:95%;animation-delay:.6s,2s"></span><span style="height:70%;animation-delay:.7s,2.4s"></span>
+            </div>
+            <div class="mock-task done" style="animation-delay:.5s"><div class="tick"><i data-icon="check"></i></div><span>Design landing page</span><em class="l">low</em></div>
+            <div class="mock-task" style="animation-delay:.7s"><div class="tick"></div><span>Review pull requests</span><em class="m">medium</em></div>
+            <div class="mock-task" style="animation-delay:.9s"><div class="tick"></div><span>Ship v1.0 release</span><em>high</em></div>
+          </div>
+          <div class="float-chip c1"><i data-icon="zap"></i> 3 tasks due today</div>
+          <div class="float-chip c2"><i data-icon="trend"></i> +24% productivity</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">Features</span><h2>Everything you need to stay in flow</h2><p>Powerful where it matters, invisible everywhere else.</p></div>
+        <div class="features">
+          <article class="feature reveal" style="--d:0"><div class="f-icon" style="background:linear-gradient(135deg,#7c5cff,#a58bff)"><i data-icon="trend"></i></div><h3>Live dashboard</h3><p>Animated stats, a completion ring and a weekly activity chart show your progress at a glance.</p></article>
+          <article class="feature reveal" style="--d:1"><div class="f-icon" style="background:linear-gradient(135deg,#00b8d9,#00d4ff)"><i data-icon="board"></i></div><h3>Drag &amp; drop board</h3><p>Move tasks between To do, In progress and Done with silky smooth drag and drop.</p></article>
+          <article class="feature reveal" style="--d:2"><div class="f-icon" style="background:linear-gradient(135deg,#ff5c9d,#ff8fb8)"><i data-icon="zap"></i></div><h3>Priorities &amp; due dates</h3><p>Colour-coded priorities and overdue alerts keep the important things on top.</p></article>
+          <article class="feature reveal" style="--d:0"><div class="f-icon" style="background:linear-gradient(135deg,#2ee6a6,#1fb98a)"><i data-icon="user"></i></div><h3>Google sign-in</h3><p>Join in one tap with Google — or use classic email and password. Your call.</p></article>
+          <article class="feature reveal" style="--d:1"><div class="f-icon" style="background:linear-gradient(135deg,#ffb84d,#ff8a3d)"><i data-icon="shield"></i></div><h3>Secure by design</h3><p>Hashed passwords, signed JWT sessions, rate limiting and hardened HTTP headers.</p></article>
+          <article class="feature reveal" style="--d:2"><div class="f-icon" style="background:linear-gradient(135deg,#6a7bff,#7c5cff)"><i data-icon="phone"></i></div><h3>Works everywhere</h3><p>Fully responsive on phone, tablet and desktop with a slick dark interface.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="how">
+      <div class="container">
+        <div class="section-head reveal"><span class="eyebrow">How it works</span><h2>From idea to done in three steps</h2></div>
+        <div class="steps">
+          <div class="step reveal" style="--d:0"><h3>Create your account</h3><p>Sign up with email or Google in under ten seconds.</p></div>
+          <div class="step reveal" style="--d:1"><h3>Add your tasks</h3><p>Set a priority and a due date, then drop it on your board.</p></div>
+          <div class="step reveal" style="--d:2"><h3>Track your progress</h3><p>Watch your dashboard light up as you check things off.</p></div>
+        </div>
+        <div class="stats-band reveal" style="margin-top:3rem">
+          <div><b data-count="10000" data-suffix="+">0</b><span>Tasks completed</span></div>
+          <div><b data-count="99" data-suffix="%">0</b><span>Uptime</span></div>
+          <div><b data-count="3" data-suffix="">0</b><span>Powerful views</span></div>
+          <div><b data-count="24" data-suffix="/7">0</b><span>Always available</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="start" style="padding-top:2rem">
+      <div class="container">
+        <div class="cta reveal">
+          <h2>Ready to get things done?</h2>
+          <p>Create your free account and organise your first task in seconds.</p>
+          <a href="/register.html" class="btn btn-primary btn-lg" data-guest>Create free account <i data-icon="arrow" class="arrow-ic"></i></a>
+          <a href="/dashboard.html" class="btn btn-primary btn-lg" data-authed>Open dashboard <i data-icon="arrow" class="arrow-ic"></i></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container foot"><a href="/" class="logo"><span class="logo-mark"><i data-icon="check"></i></span>TaskFlow</a><span>© <span id="yr"></span> TaskFlow. Built with HTML, CSS, JS, Node.js &amp; MongoDB.</span></div></footer>
+
+  <script src="/js/common.js"></script>
+  <script src="/js/landing.js"></script>
+</body>
+</html>

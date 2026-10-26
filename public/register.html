@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#090a14" />
+  <title>Create your account – TaskFlow</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <div class="bg-fx"><div class="grid-bg"></div><div class="blob b1"></div><div class="blob b2"></div></div>
+  <div class="auth">
+    <aside class="auth-side">
+      <a href="/" class="logo"><span class="logo-mark"><i data-icon="check"></i></span>TaskFlow</a>
+      <div>
+        <h2>Plan less.<br /><span class="grad-text">Do more.</span></h2>
+        <p>One calm place for every task, deadline and idea.</p>
+        <ul class="auth-perks">
+          <li style="--i:0"><i data-icon="check"></i> Live dashboard with beautiful stats</li>
+          <li style="--i:1"><i data-icon="check"></i> Drag &amp; drop kanban board</li>
+          <li style="--i:2"><i data-icon="check"></i> One-tap Google sign-in</li>
+        </ul>
+      </div>
+      <small style="color:#c9cce4">© TaskFlow</small>
+    </aside>
+    <main class="auth-main">
+      <a href="/" class="btn btn-ghost btn-sm back-home"><i data-icon="arrow" style="transform:rotate(180deg)"></i> Home</a>
+      <div class="auth-card">
+        <h1>Create your account</h1>
+        <p class="sub">Start organising your work in seconds.</p>
+        <div id="googleBtn"></div>
+        <div class="divider">or continue with email</div>
+        <div class="form-error" id="err"></div>
+        <form id="authForm" data-mode="register" novalidate>
+          <div class="field"><label for="name">Full name</label><i data-icon="user" class="lead-ic"></i><input class="input" id="name" type="text" placeholder="Jane Doe" autocomplete="name" required /></div>
+          <div class="field"><label for="email">Email</label><i data-icon="mail" class="lead-ic"></i><input class="input" id="email" type="email" placeholder="you@example.com" autocomplete="email" required /></div>
+          <div class="field"><label for="password">Password</label><i data-icon="lock" class="lead-ic"></i><input class="input" id="password" type="password" placeholder="At least 6 characters" autocomplete="new-password" required minlength="6" /><button type="button" class="eye" id="eye" aria-label="Show password"><i data-icon="eye"></i></button></div>
+          <button class="btn btn-primary btn-block btn-lg" id="submitBtn" type="submit" style="margin-top:.6rem">Create account</button>
+        </form>
+        <p class="auth-foot">Already have an account? <a href="/login.html">Log in</a></p>
+      </div>
+    </main>
+  </div>
+  <script src="/js/common.js"></script>
+  <script src="/js/auth.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</body>
+</html>
