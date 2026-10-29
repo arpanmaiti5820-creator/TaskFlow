@@ -37,7 +37,7 @@
   const lsSet = (k, v) => {
     try {
       localStorage.setItem(k, JSON.stringify(v));
-    } catch {}
+    } catch { }
   };
   const ST = Object.assign(
     {
@@ -168,12 +168,12 @@
     (t.timeSpent || 0) +
     (t.timerStartedAt
       ? Math.max(
-          0,
-          Math.floor(
-            (Date.now() + S.offset - new Date(t.timerStartedAt).getTime()) /
-              1000,
-          ),
-        )
+        0,
+        Math.floor(
+          (Date.now() + S.offset - new Date(t.timerStartedAt).getTime()) /
+          1000,
+        ),
+      )
       : 0);
   const fmtClock = (s) =>
     `${pad(Math.floor(s / 3600))}:${pad(Math.floor((s % 3600) / 60))}:${pad(s % 60)}`;
@@ -195,10 +195,10 @@
   const repeatText = (t) =>
     t.repeat === "custom"
       ? (t.repeatDays || [])
-          .slice()
-          .sort()
-          .map((d) => DOW[d])
-          .join(", ")
+        .slice()
+        .sort()
+        .map((d) => DOW[d])
+        .join(", ")
       : REPEAT_LABEL[t.repeat] || "";
   function adopt(task) {
     // replace a task in state with a fresh copy from the server
@@ -253,12 +253,31 @@
   }
   $("#menuBtn").addEventListener("click", openSidebar);
   overlay.addEventListener("click", closeSidebar);
+
   $("#logoutBtn").addEventListener("click", () => {
+    const modal = $("#logoutModal");
+    if (modal) {
+      modal.classList.add("show");
+    }
+  });
+
+  $("#cancelLogout").addEventListener("click", () => {
+    $("#logoutModal").classList.remove("show");
+  });
+
+  $("#confirmLogout").addEventListener("click", () => {
     Auth.clear();
     toast("Logged out. See you soon!");
     document.body.classList.add("page-out");
     setTimeout(() => (location.href = "/"), 400);
   });
+
+  $("#logoutModal").addEventListener("click", (event) => {
+    if (event.target.id === "logoutModal") {
+      event.target.classList.remove("show");
+    }
+  });
+
 
   /* ---------- Data ---------- */
   async function load() {
@@ -283,14 +302,14 @@
       const s = await api("/tasks/stats");
       S.stats = s.stats;
       S.week = s.week;
-    } catch {}
+    } catch { }
   }
   async function refreshActs(id) {
     try {
       const r = await api("/tasks/" + id);
       S.acts[id] = r.task.activity;
       if (S.drawerId === id) renderDrawer();
-    } catch {}
+    } catch { }
   }
   async function loadInsights() {
     try {
@@ -421,8 +440,8 @@
     $("#taskList").innerHTML = list.length
       ? list.map(taskRow).join("")
       : emptyBox(
-          S.q || S.status || S.prio ? "No matching tasks" : "No tasks yet",
-        );
+        S.q || S.status || S.prio ? "No matching tasks" : "No tasks yet",
+      );
   }
 
   function renderBoard() {
@@ -437,14 +456,14 @@
         const items = list.filter((t) => t.status === k);
         return `<div class="lane" data-lane="${k}"><div class="lane-head" style="--lc:${color}"><i></i>${label}<em>${items.length}</em></div>
         <div class="lane-body">${items
-          .map(
-            (
-              t,
-              i,
-            ) => `<div class="card p-${t.priority} ${t.status === "done" ? "done" : ""} ${t.timerStartedAt ? "running" : ""}" draggable="true" data-id="${t._id}" style="--i:${Math.min(i, 10)}">
+            .map(
+              (
+                t,
+                i,
+              ) => `<div class="card p-${t.priority} ${t.status === "done" ? "done" : ""} ${t.timerStartedAt ? "running" : ""}" draggable="true" data-id="${t._id}" style="--i:${Math.min(i, 10)}">
           <h4 data-open="${t._id}">${esc(t.title)}</h4><div class="meta">${tags(t)}${timeTag(t)}</div>${actions(t)}</div>`,
-          )
-          .join("")}</div></div>`;
+            )
+            .join("")}</div></div>`;
       })
       .join("");
   }
@@ -488,9 +507,9 @@
     $("#calTitle").textContent = week
       ? `${cells[0].toLocaleDateString(undefined, { month: "short", day: "numeric" })} – ${cells[6].toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" })}`
       : new Date(S.cal.y, S.cal.m, 1).toLocaleDateString(undefined, {
-          month: "long",
-          year: "numeric",
-        });
+        month: "long",
+        year: "numeric",
+      });
     $$("#calMode .chip").forEach((c) =>
       c.classList.toggle("active", c.dataset.mode === S.cal.mode),
     );
@@ -507,12 +526,12 @@
           return `<div class="cal-cell ${out ? "out" : ""} ${key === tk ? "today" : ""} ${key === S.cal.sel ? "sel" : ""} ${list.length ? "has" : ""}" data-day="${key}" data-n="${list.length}">
         <span class="cal-num">${d.getDate()}</span>
         ${list
-          .slice(0, max)
-          .map(
-            (t) =>
-              `<button class="cal-chip p-${t.priority} ${t.status === "done" ? "done" : ""}" data-open="${t._id}" title="${esc(t.title)}">${esc(t.title)}</button>`,
-          )
-          .join("")}
+              .slice(0, max)
+              .map(
+                (t) =>
+                  `<button class="cal-chip p-${t.priority} ${t.status === "done" ? "done" : ""}" data-open="${t._id}" title="${esc(t.title)}">${esc(t.title)}</button>`,
+              )
+              .join("")}
         ${list.length > max ? `<div class="cal-more">+${list.length - max} more</div>` : ""}</div>`;
         })
         .join("");
@@ -650,12 +669,12 @@
       : "";
     $("#estList").innerHTML = d.estVsActual.length
       ? d.estVsActual
-          .map((r) => {
-            const m = Math.max(r.estimate, r.actual, 1);
-            return `<div class="est-row"><div class="et"><span>${esc(r.title)}</span><span class="muted" style="margin:0">${r.actual}m / ${r.estimate}m</span></div>
+        .map((r) => {
+          const m = Math.max(r.estimate, r.actual, 1);
+          return `<div class="est-row"><div class="et"><span>${esc(r.title)}</span><span class="muted" style="margin:0">${r.actual}m / ${r.estimate}m</span></div>
         <div class="est-bars"><i class="e" style="width:0" data-bw="${(r.estimate / m) * 100}"></i><i class="a ${r.actual > r.estimate ? "over" : ""}" style="width:0" data-bw="${(r.actual / m) * 100}"></i></div></div>`;
-          })
-          .join("")
+        })
+        .join("")
       : `<div class="empty" style="padding:1.6rem"><p style="margin:0">Add an estimate to a task and track its time to compare here.</p></div>`;
     requestAnimationFrame(() =>
       requestAnimationFrame(() =>
@@ -1081,10 +1100,9 @@
     $("#dTitle").textContent = t.title;
     $("#dMeta").innerHTML =
       `<div class="meta">${tags(t)}</div>${t.description ? `<p class="d-desc">${esc(t.description)}</p>` : ""}
-      ${
-        inTrash
-          ? ""
-          : `<div class="d-actions">${timerBtn(t)}
+      ${inTrash
+        ? ""
+        : `<div class="d-actions">${timerBtn(t)}
         <button class="btn btn-ghost btn-sm" data-focus="${id}">${icon("target")} Focus</button>
         <button class="btn btn-ghost btn-sm" data-toggle="${id}">${icon("check")} ${t.status === "done" ? "Reopen" : "Mark done"}</button>
         <button class="btn btn-ghost btn-sm" data-edit="${id}">${icon("edit")} Edit</button>
@@ -1102,13 +1120,13 @@
       ? '<small class="muted">Loading…</small>'
       : acts.length
         ? acts
-            .slice()
-            .reverse()
-            .map(
-              (a, i) =>
-                `<div class="tl-item ${esc(a.type)}" style="--i:${Math.min(i, 10)}">${esc(a.text)}<small>${ago(a.at)} · ${new Date(a.at).toLocaleString(undefined, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" })}</small></div>`,
-            )
-            .join("")
+          .slice()
+          .reverse()
+          .map(
+            (a, i) =>
+              `<div class="tl-item ${esc(a.type)}" style="--i:${Math.min(i, 10)}">${esc(a.text)}<small>${ago(a.at)} · ${new Date(a.at).toLocaleString(undefined, { month: "short", day: "numeric", hour: "2-digit", minute: "2-digit" })}</small></div>`,
+          )
+          .join("")
         : '<small class="muted">No activity yet.</small>';
     renderIcons(drawer);
   }
@@ -1341,11 +1359,11 @@
     dot.classList.toggle("show", unread > 0);
     $("#bellList").innerHTML = bell.length
       ? bell
-          .map(
-            (b) =>
-              `<div class="bell-item ${b.read ? "" : "unread"}">${icon("bell")}<div><b>${esc(b.title)}</b>${b.body ? `<small>${esc(b.body)}</small>` : ""}<small>${ago(b.at)}</small></div></div>`,
-          )
-          .join("")
+        .map(
+          (b) =>
+            `<div class="bell-item ${b.read ? "" : "unread"}">${icon("bell")}<div><b>${esc(b.title)}</b>${b.body ? `<small>${esc(b.body)}</small>` : ""}<small>${ago(b.at)}</small></div></div>`,
+        )
+        .join("")
       : '<div class="bell-empty">No notifications yet 🔔</div>';
   }
   function closeBell() {
@@ -1383,7 +1401,7 @@
     if ("Notification" in window && Notification.permission === "granted") {
       try {
         new Notification(title, { body, tag: opts.tag });
-      } catch {}
+      } catch { }
     }
   }
   function beep() {
@@ -1405,7 +1423,7 @@
         o.stop(t + 0.25);
       });
       setTimeout(() => ctx.close(), 1200);
-    } catch {}
+    } catch { }
   }
 
   /* ---------- Smart reminders (runs while the app is open) ---------- */
@@ -1609,7 +1627,7 @@
               method: "POST",
             });
             adopt(r.task);
-          } catch {}
+          } catch { }
           await refreshStats();
         }
         const long = F.cycles % 4 === 0;
@@ -1645,7 +1663,7 @@
       try {
         await timerPause(F.taskId);
         await refreshStats();
-      } catch {}
+      } catch { }
     }
     F.mode = F.mode === "focus" ? "break" : "focus";
     F.remaining = durFor(F.mode);
@@ -1659,7 +1677,7 @@
       try {
         await timerPause(F.taskId);
         await refreshStats();
-      } catch {}
+      } catch { }
     }
     F.remaining = durFor(F.mode);
     F.running = false;
